@@ -1,0 +1,19 @@
+.tile-container {
+    width: 250px;
+    padding: 20px;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    border-radius: 200px;
+
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tile-container img {
+    margin: 0;
+}
