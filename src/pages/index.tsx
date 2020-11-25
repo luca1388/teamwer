@@ -24,7 +24,7 @@ const IndexPage: React.FC<PageProps<IndexPageProps>> = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="teams-container" style={{ width: '100vw', flexWrap: 'wrap', display: 'flex', justifyContent: 'center', alignItems: "center"}}>
+      <div className="teams-container" style={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center', alignItems: "center"}}>
         {teams.map(team => (
           <TeamTile
             key={team.id}
