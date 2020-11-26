@@ -1,0 +1,23 @@
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.table-row .position {
+    width: 10%;
+}
+.table-row .image {
+    width: 10%;
+}
+.table-row .team {
+    width: 70%;
+}
+.table-row .points {
+    width: 10%;
+}
+
+.table-row.header {
+    font-weight: bold;
+}
