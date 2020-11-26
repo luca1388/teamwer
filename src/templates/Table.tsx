@@ -1,11 +1,25 @@
 import React from 'react';
+import { PageCo} from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import "./Table.css";
 
-const Test = ({ pageContext }) => {
-    console.log(pageContext.table);
+interface TableProps {
+    pageContext: {
+        table: [{
+            position: number;
+            id: string;
+            team: {
+                name: string;
+                crestUrl: string;
+            },
+            points: number;
+        }]
+    }
+};
+
+const Table: React.FC<TableProps> = ({ pageContext }) => {
     return(
         <Layout>
             <SEO title="Competitions table"></SEO>
@@ -27,5 +41,4 @@ const Test = ({ pageContext }) => {
     );
 };
 
-
-export default Test;
+export default Table;
