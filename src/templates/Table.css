@@ -11,13 +11,15 @@
 .table-row .image {
     width: 5%;
 }
+.table-row .image img {
+    margin: 0;
+}
 .table-row .team {
     width: 80%;
 }
 .table-row .points {
     width: 10%;
 }
-
 .table-row.header {
     font-weight: bold;
 }
