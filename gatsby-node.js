@@ -6,6 +6,7 @@
 
 // You can delete this file if you're not using it
 const axios = require("axios").default
+const path = require('path');
 
 require("dotenv").config({
   path: `.env`,
@@ -51,35 +52,63 @@ exports.sourceNodes = async ({
       },
     })
   )
-  createNode({
-    ...data.table,
-    id: createNodeId(`${TABLE_POSITION_NODE_TYPE}-`),
-    parent: null,
-    children: [],
-    internal: {
-      type: TABLE_POSITION_NODE_TYPE,
-      content: JSON.stringify(data.table),
-      contentDigest: createContentDigest(data.table),
-    },
-  })
 
-  // data.table.forEach(position =>
-  //   createNode({
-  //     ...position,
-  //     id: createNodeId(`${TABLE_POSITION_NODE_TYPE}-${position.position}`),
-  //     parent: null,
-  //     children: [],
-  //     internal: {
-  //       type: TABLE_POSITION_NODE_TYPE,
-  //       content: JSON.stringify(position),
-  //       contentDigest: createContentDigest(position),
-  //     },
-  //   })
-  // )
-
+  data.table.forEach(position =>
+    createNode({
+      ...position,
+      id: createNodeId(`${TABLE_POSITION_NODE_TYPE}-${position.position}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: TABLE_POSITION_NODE_TYPE,
+        content: JSON.stringify(position),
+        contentDigest: createContentDigest(position),
+      },
+    })
+  )
   return
 }
 
-exports.onCreateNode = ({ node }) => {
-  console.log(`Node created of type "${node.internal.type}"`)
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  if (node.internal.type === `Position`) {
+    console.log(`Node created of type "${node.internal.type}"`)
+  }
+}
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+  const result = await graphql(`
+    query {
+      allPosition {
+        edges {
+          node {
+            id
+            position
+            team {
+              id
+              name
+              crestUrl
+            }
+            points
+            playedGames
+            draw
+            lost
+            goalsFor
+            goalsAgainst
+            goalDifference
+          }
+        }
+      }
+    }
+  `)
+
+  createPage({
+    path: '/table/',
+    component: path.resolve(`./src/templates/Table.js`),
+    context: {
+      // Data passed to context is available
+      // in page queries as GraphQL variables.
+      table: result.data.allPosition.edges.map(edge => ({...edge.node}))
+    },
+  })
 }
