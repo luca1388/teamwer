@@ -15,7 +15,7 @@ interface ToolbarProps {
 const Toolbar: React.FC<ToolbarProps> = ({ links }) => (
   <div className="toolbar">
     {links.map((link, index) => (
-      <div key={link.to}><Link to={link.to}>{link.label}</Link> {index !== (links.length - 1) && "|"} </div>
+      <span key={link.to}><Link to={link.to}>{link.label}</Link> {index !== (links.length - 1) && "|"} </span>
     ))}
   </div>
 )
