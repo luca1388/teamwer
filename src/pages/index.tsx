@@ -9,10 +9,10 @@ type IndexPageProps = {
   allTeam: {
     nodes: [
       {
-        id: number
         shortName: string
         crestUrl: string
         tla: string
+        teamId: number
       }
     ]
   }
@@ -27,9 +27,9 @@ const IndexPage: React.FC<PageProps<IndexPageProps>> = ({ data }) => {
       <div className="teams-container" style={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center', alignItems: "center"}}>
         {teams.map(team => (
           <TeamTile
-            key={team.id}
+            key={team.teamId}
             name={team.tla}
-            id={"" + team.id}
+            id={team.teamId}
             shortName={team.shortName}
             imageUrl={team.crestUrl}
           />
@@ -49,6 +49,7 @@ export const query = graphql`
         shortName
         crestUrl
         tla
+        teamId
       }
     }
   }

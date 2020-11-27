@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import React from "react";
 import "./TeamTile.css";
 
@@ -5,7 +6,7 @@ interface TeamTileProps {
   name: string
   imageUrl: string
   shortName: string
-  id: string
+  id: number
 }
 
 const TeamTile: React.FC<TeamTileProps> = ({
@@ -14,10 +15,12 @@ const TeamTile: React.FC<TeamTileProps> = ({
   id,
 }): React.ReactElement => { 
   return (
-    <div className="tile-container" id={id}>
-      <img src={imageUrl} alt={shortName} width={80} />
-      {shortName}
-    </div>
+    <Link to={"/schedule/teams/" + id} style={{ textDecoration: 'none'}}>
+      <div className="tile-container" id={"" + id}>
+        <img src={imageUrl} alt={shortName} width={80} />
+        {shortName}
+      </div>
+    </Link>
   )
 }
 
