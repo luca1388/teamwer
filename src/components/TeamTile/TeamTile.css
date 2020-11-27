@@ -16,6 +16,15 @@
     margin: 10px;
 }
 
+.tile-container:hover {
+    background-color: ivory;
+}
+
 .tile-container img {
     margin: 0;
+}
+
+.tile-link, .tile-link:active {
+    text-decoration: none;
+    color: black;
 }

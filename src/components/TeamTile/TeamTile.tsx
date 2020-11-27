@@ -15,7 +15,7 @@ const TeamTile: React.FC<TeamTileProps> = ({
   id,
 }): React.ReactElement => { 
   return (
-    <Link to={"/schedule/teams/" + id} style={{ textDecoration: 'none'}}>
+    <Link className="tile-link" to={"/schedule/teams/" + id} style={{ textDecoration: 'none'}}>
       <div className="tile-container" id={"" + id}>
         <img src={imageUrl} alt={shortName} width={80} />
         {shortName}
