@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `Teamwer`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: `Check out the results of your favourite Serie A Italian soccer team!`,
+    author: `@luca1388`,
+    image: ''
   },
   plugins: [
     {
