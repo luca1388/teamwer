@@ -58,38 +58,6 @@ exports.sourceNodes = async ({
         contentDigest: createContentDigest(team),
       },
     });
-    let teamSchedule = data.schedule.filter(
-      match => match.homeTeam.id === team.id || match.awayTeam.id === team.id
-    );
-
-    // createNode({
-    //   ...teamSchedule,
-    //   teamName: team.name,
-    //   teamId: team.id,
-    //   id: createNodeId(`${MATCH_NODE_TYPE}-${teamSchedule.id}`),
-    //   parent: null,
-    //   children: [],
-    //   internal: {
-    //     type: MATCH_NODE_TYPE,
-    //     content: JSON.stringify(teamSchedule),
-    //     contentDigest: createContentDigest(teamSchedule),
-    //   },
-    // })
-    teamSchedule.forEach(match =>
-      createNode({
-        ...match,
-        teamName: team.name,
-        teamId: team.id,
-        id: createNodeId(`${MATCH_NODE_TYPE}-${match.id}`),
-        parent: null,
-        children: [],
-        internal: {
-          type: MATCH_NODE_TYPE,
-          content: JSON.stringify(match),
-          contentDigest: createContentDigest(match),
-        },
-      })
-    );
   });
 
   data.table.forEach(position =>
@@ -105,6 +73,20 @@ exports.sourceNodes = async ({
       },
     })
   );
+
+  data.schedule.forEach(match => {
+    createNode({
+      ...match,
+      id: createNodeId(`${MATCH_NODE_TYPE}-${match.id}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: MATCH_NODE_TYPE,
+        content: JSON.stringify(match),
+        contentDigest: createContentDigest(match),
+      },
+    });
+  });
   return;
 };
 
@@ -157,8 +139,6 @@ exports.createPages = async ({ graphql, actions }) => {
         totalCount
         edges {
           node {
-            teamId
-            teamName
             id
             score {
               fullTime {
@@ -168,9 +148,11 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             homeTeam {
               name
+              id
             }
             awayTeam {
               name
+              id
             }
           }
         }
@@ -178,15 +160,50 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  scheduleResult.data.allMatch.edges.forEach(match => {
+  const teams = await graphql(`
+    {
+      allTeam {
+        edges {
+          node {
+            id
+            teamId
+          }
+        }
+      }
+    }
+  `);
+
+  teams.data.allTeam.edges.forEach(teamEdge => {
+    const searchedTeamId = teamEdge.node.teamId;
+
+    let searchedTeamMatches = scheduleResult.data.allMatch.edges.filter(
+      scheduleEdge => {
+        return (
+          scheduleEdge.node.homeTeam.id === searchedTeamId ||
+          scheduleEdge.node.awayTeam.id === searchedTeamId
+        );
+      }
+    );
+    const searchedTeamName =
+      searchedTeamMatches[0].node.homeTeam.id === searchedTeamId
+        ? searchedTeamMatches[0].node.homeTeam.name
+        : searchedTeamMatches[0].node.awayTeam.name;
+
+    searchedTeamMatches = searchedTeamMatches.map(match => ({
+      ...match,
+      teamId: searchedTeamId,
+      teamName: searchedTeamName,
+    }));
+
     createPage({
-      path: "/schedule/teams/" + match.node.teamId,
+      path: "/schedule/teams/" + searchedTeamId,
       component: path.resolve(`./src/templates/Schedule/Schedule.tsx`),
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
-        teamId: match.node.teamId,
-        teamName: match.node.teamName,
+        teamId: searchedTeamId,
+        teamName: searchedTeamName,
+        matches: searchedTeamMatches,
       },
     });
   });
