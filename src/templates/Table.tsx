@@ -21,7 +21,7 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ pageContext }) => {
     return(
         <Layout>
-            <SEO title="Competitions table"></SEO>
+            <SEO title="Competition table"></SEO>
             <div className="table-row header">
                 <div className="position"></div>
                 <div className="image"></div>
