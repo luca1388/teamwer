@@ -186,7 +186,7 @@ exports.createPages = async ({ graphql, actions }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         teamId: match.node.teamId,
-        match: match.node,
+        teamName: match.node.teamName,
       },
     });
   });
