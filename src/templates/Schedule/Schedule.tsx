@@ -5,10 +5,44 @@ import SEO from "../../components/seo";
 
 import "./Schedule.css";
 
-const Schedule = ({ data, pageContext }) => {
-  const matches = data.allMatch.edges.filter(
+type ScheduleNode = {
+  node: {
+    id: string;
+    teamName: string;
+    teamId: number;
+    score: {
+      fullTime: {
+        homeTeam: number;
+        awayTeam: number;
+      }
+    },
+    homeTeam: {
+      name: string;
+    },
+    awayTeam: {
+      name: string
+    }
+  }
+};
+
+interface ScheduleProps {
+  pageContext: {
+    teamId: number;
+    teamName: string;
+  },
+  data: {
+    allMatch: {
+      edges: ScheduleNode[]
+    }
+  }
+};
+
+const Schedule: React.FC<ScheduleProps> = ({ data, pageContext }) => {
+  const matches: ScheduleNode[] = data.allMatch.edges.filter(
     edge => edge.node.teamId === pageContext.teamId
   );
+
+  console.log(pageContext.teamName);
 
   return (
     <Layout>
