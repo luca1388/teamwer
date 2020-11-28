@@ -7,9 +7,7 @@ import "./Schedule.css";
 
 type ScheduleNode = {
   node: {
-    id: string;
-    teamName: string;
-    teamId: number;
+    id: number;
     score: {
       fullTime: {
         homeTeam: number;
@@ -29,24 +27,16 @@ interface ScheduleProps {
   pageContext: {
     teamId: number;
     teamName: string;
-  },
-  data: {
-    allMatch: {
-      edges: ScheduleNode[]
-    }
+    matches: ScheduleNode[];
   }
 };
 
-const Schedule: React.FC<ScheduleProps> = ({ data, pageContext }) => {
-  const matches: ScheduleNode[] = data.allMatch.edges.filter(
-    edge => edge.node.teamId === pageContext.teamId
-  );
-
-  console.log(pageContext.teamName);
+const Schedule: React.FC<ScheduleProps> = ({ pageContext }) => {
+  const { teamName, matches } = pageContext;
 
   return (
     <Layout>
-      <SEO title={"Calendario " + pageContext.teamName}></SEO>
+      <SEO title={"Calendario " + teamName}></SEO>
       {matches.map(match => (
         <div className="schedule-container" key={match.node.id}>
           <div className="schedule-team">{match.node.homeTeam.name}</div>
@@ -61,29 +51,28 @@ const Schedule: React.FC<ScheduleProps> = ({ data, pageContext }) => {
 
 export default Schedule;
 
-export const query = graphql`
-  query {
-    allMatch {
-      edges {
-        node {
-          id
-          teamName
-          teamId
-          score {
-            fullTime {
-              homeTeam
-              awayTeam
-            }
-          }
-          homeTeam {
-            name
-            id
-          }
-          awayTeam {
-            name
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query {
+//     allMatch {
+//       edges {
+//         node {
+//           id
+//           score {
+//             fullTime {
+//               homeTeam
+//               awayTeam
+//             }
+//           }
+//           homeTeam {
+//             name
+//             id
+//           }
+//           awayTeam {
+//             name
+//             id
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
