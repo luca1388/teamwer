@@ -9,9 +9,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
-import Header from "./Header/header";
-import "./layout.css";
-import Toolbar from "./Toolbar/Toolbar";
+import Header from "../Header/header";
+import "./Layout.css";
+import Toolbar from "../Toolbar/Toolbar";
 
 interface SiteData {
   site: {

@@ -1,7 +1,7 @@
 import React from "react"
 import { PageProps, graphql } from "gatsby"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout/Layout"
 import SEO from "../components/seo"
 import TeamTile from "../components/TeamTile/TeamTile"
 
