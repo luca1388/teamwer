@@ -10,10 +10,10 @@ import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 interface SEOProps {
-  description: string;
-  lang: string;
+  description?: string;
+  lang?: string;
   title: string;
-  meta: [{
+  meta?: [{
     name: string;
     content: string
   }]
@@ -23,9 +23,9 @@ interface SiteData {
   site: {
     siteMetadata: {
       title: string;
-      description?: string;
-      author?: string;
-      image?: string;
+      description: string;
+      author: string;
+      image: string;
     }
   }
 };
