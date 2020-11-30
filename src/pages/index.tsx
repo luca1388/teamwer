@@ -1,30 +1,38 @@
-import React from "react"
-import { PageProps, graphql } from "gatsby"
+import React from "react";
+import { PageProps, graphql } from "gatsby";
 
-import Layout from "../components/Layout/Layout"
-import SEO from "../components/seo"
-import TeamTile from "../components/TeamTile/TeamTile"
+import Layout from "../components/Layout/Layout";
+import SEO from "../components/seo";
+import TeamTile from "../components/TeamTile/TeamTile";
 
 type IndexPageProps = {
   allTeam: {
     nodes: [
       {
-        shortName: string
-        crestUrl: string
-        tla: string
-        teamId: number
+        shortName: string;
+        crestUrl: string;
+        tla: string;
+        teamId: number;
       }
-    ]
-  }
-}
+    ];
+  };
+};
 
 const IndexPage: React.FC<PageProps<IndexPageProps>> = ({ data }) => {
-  const teams = data.allTeam.nodes
+  const teams = data.allTeam.nodes;
 
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="teams-container" style={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center', alignItems: "center"}}>
+      <div
+        className="teams-container"
+        style={{
+          flexWrap: "wrap",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         {teams.map(team => (
           <TeamTile
             key={team.teamId}
@@ -36,10 +44,10 @@ const IndexPage: React.FC<PageProps<IndexPageProps>> = ({ data }) => {
         ))}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
 export const query = graphql`
   query TeamNamesQuery {
@@ -53,4 +61,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;
