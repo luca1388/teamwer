@@ -125,7 +125,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   createPage({
     path: "/table/",
-    component: path.resolve(`./src/templates/Table.tsx`),
+    component: path.resolve(`./src/templates/Table/Table.tsx`),
     context: {
       // Data passed to context is available
       // in page queries as GraphQL variables.
