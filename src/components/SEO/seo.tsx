@@ -9,6 +9,8 @@ import React, { ReactElement } from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { SiteData } from '../../types';
+
 interface SEOProps {
   description?: string;
   lang?: string;
@@ -17,17 +19,6 @@ interface SEOProps {
     name: string;
     content: string
   }]
-};
-
-interface SiteData {
-  site: {
-    siteMetadata: {
-      title: string;
-      description: string;
-      author: string;
-      image: string;
-    }
-  }
 };
 
 const SEO: React.FC<SEOProps> = ({ description = "", lang = "en", meta = [], title }): ReactElement => {

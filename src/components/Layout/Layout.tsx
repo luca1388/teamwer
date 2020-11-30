@@ -12,13 +12,7 @@ import Header from "../Header/header";
 import "./Layout.css";
 import Toolbar from "../Toolbar/Toolbar";
 
-interface SiteData {
-  site: {
-    siteMetadata: {
-      title: string;
-    };
-  };
-}
+import { SiteData } from "../../types";
 
 const Layout: React.FC = ({ children }) => {
   const data: SiteData = useStaticQuery(graphql`
@@ -26,6 +20,9 @@ const Layout: React.FC = ({ children }) => {
       site {
         siteMetadata {
           title
+          description
+          author
+          image
         }
       }
     }
