@@ -60,6 +60,9 @@ exports.sourceNodes = async ({
     });
   });
 
+  // joining table data with teams to get all needed fields
+  data.table = data.table.map(tableEntry => ({...tableEntry, ["team"]: {...data.teams.find(team => team.id === tableEntry.team.id)}}));
+
   data.table.forEach(position =>
     createNode({
       ...position,
@@ -108,7 +111,9 @@ exports.createPages = async ({ graphql, actions }) => {
             team {
               id
               name
+              shortName
               crestUrl
+              tla
             }
             points
             playedGames
@@ -117,6 +122,7 @@ exports.createPages = async ({ graphql, actions }) => {
             goalsFor
             goalsAgainst
             goalDifference
+            won
           }
         }
       }
