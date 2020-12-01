@@ -25,7 +25,7 @@ const Table: React.FC<TableProps> = ({ pageContext }) => {
             <div className="table-row header">
                 <div className="position"></div>
                 <div className="image"></div>
-                <div className="team">Squadra</div>
+                <div className="team"></div>
                 <div className="points">Punti</div>             
             </div>
             {pageContext.table.map(entry => 
