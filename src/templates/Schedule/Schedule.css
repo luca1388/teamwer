@@ -15,6 +15,13 @@
 }
 
 .schedule-score {
-    width: 10%;
     text-align: center;
+    padding: 5px;
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
 }

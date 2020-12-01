@@ -41,8 +41,10 @@ const Schedule: React.FC<ScheduleProps> = ({ pageContext }) => {
       {matches.map(match => (
         <div className="schedule-container" key={match.node.id}>
           <div className="schedule-team">{match.node.homeTeam.shortName}</div>
-          <div className="schedule-score">{match.node.score.fullTime.homeTeam}</div>-
-          <div className="schedule-score">{match.node.score.fullTime.awayTeam}</div>
+          <div className="score-container">
+              <div className="schedule-score">{match.node.score.fullTime.homeTeam}</div>-
+              <div className="schedule-score">{match.node.score.fullTime.awayTeam}</div>
+          </div>
           <div className="schedule-team">{match.node.awayTeam.shortName}</div>
         </div>
       ))}
