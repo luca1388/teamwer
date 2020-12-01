@@ -15,9 +15,11 @@ type ScheduleNode = {
     },
     homeTeam: {
       name: string;
+      shortName: string;
     },
     awayTeam: {
-      name: string
+      name: string;
+      shortName: string;
     }
   }
 };
@@ -38,10 +40,10 @@ const Schedule: React.FC<ScheduleProps> = ({ pageContext }) => {
       <SEO title={"Calendario " + teamName}></SEO>
       {matches.map(match => (
         <div className="schedule-container" key={match.node.id}>
-          <div className="schedule-team">{match.node.homeTeam.name}</div>
+          <div className="schedule-team">{match.node.homeTeam.shortName}</div>
           <div className="schedule-score">{match.node.score.fullTime.homeTeam}</div>-
           <div className="schedule-score">{match.node.score.fullTime.awayTeam}</div>
-          <div className="schedule-team">{match.node.awayTeam.name}</div>
+          <div className="schedule-team">{match.node.awayTeam.shortName}</div>
         </div>
       ))}
     </Layout>
