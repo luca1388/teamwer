@@ -7,6 +7,7 @@
 
 .table-row .position {
     width: 5%;
+    text-align: center;
 }
 .table-row .image {
     width: 5%;
@@ -15,11 +16,39 @@
     margin: 0;
 }
 .table-row .team {
-    width: 80%;
+    width: 25%;
 }
 .table-row .points {
     width: 10%;
+    text-align: center;
+    font-weight: bold;
+}
+.table-row .stats {
+    width: 5%;
+    text-align: center;
 }
 .table-row.header {
     font-weight: bold;
+}
+
+.table-row .statsHeader {
+    text-align: center;
+    width: 5%;
+}
+
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+    .table-row .stats, .table-row .statsHeader, .table-row .position {
+        width: 10%;
+    }
 }
