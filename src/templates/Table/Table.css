@@ -2,7 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e6e6e6;
 }
 
 .table-row .position {
@@ -11,6 +13,10 @@
 }
 .table-row .image {
     width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .table-row .image img {
     margin: 0;
@@ -35,6 +41,10 @@
 .table-row .statsHeader {
     text-align: center;
     width: 5%;
+}
+
+.table-row div {
+    height: 100%;
 }
 
 .mobile {
