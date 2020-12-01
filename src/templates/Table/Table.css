@@ -17,6 +17,7 @@
 }
 .table-row .team {
     width: 25%;
+    padding: 0 0 0 10px;
 }
 .table-row .points {
     width: 10%;
@@ -49,6 +50,9 @@
         display: block;
     }
     .table-row .stats, .table-row .statsHeader, .table-row .position {
+        width: 10%;
+    }
+    .table-row .image {
         width: 10%;
     }
 }
