@@ -76,6 +76,18 @@ exports.sourceNodes = async ({
       },
     })
   );
+  
+  // joining schedule data with teams to get all needed fields
+  data.schedule = data.schedule.map(match => {
+    const homeTeam = data.teams.find(team => team.id === match.homeTeam.id);
+    const awayTeam = data.teams.find(team => team.id === match.awayTeam.id);
+
+    return {
+      ...match,
+      ["homeTeam"]: homeTeam,
+      ["awayTeam"]: awayTeam,
+    };
+  });
 
   data.schedule.forEach(match => {
     createNode({
@@ -154,10 +166,12 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             homeTeam {
               name
+              shortName
               id
             }
             awayTeam {
               name
+              shortName
               id
             }
           }
