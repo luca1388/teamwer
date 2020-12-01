@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Teamwer`,
+    title: `Serie A Team viewer`,
     description: `Check out the results of your favourite Serie A Italian soccer team!`,
     author: `@luca1388`,
     image: ''
