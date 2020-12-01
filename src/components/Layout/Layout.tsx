@@ -38,11 +38,7 @@ const Layout: React.FC = ({ children }) => {
         ]}
       />
       <div
-        style={{
-          margin: `0 auto`,
-          width: "80%",
-          padding: `0 1.0875rem 1.45rem`,
-        }}
+        className="main-container"
       >
         <main>{children}</main>
       </div>
