@@ -29,7 +29,7 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ pageContext }) => {
     return(
         <Layout>
-            <SEO title="Competition table"></SEO>
+            <SEO title="Serie A Standings"></SEO>
             <div className="table-row header">
                 <div className="position"></div>
                 <div className="image"></div>
