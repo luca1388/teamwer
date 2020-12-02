@@ -23,7 +23,7 @@ const IndexPage: React.FC<PageProps<IndexPageProps>> = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Serie A Team viewer" />
       <div
         className="teams-container"
         style={{
