@@ -27,9 +27,13 @@ interface TableProps {
 };
 
 const Table: React.FC<TableProps> = ({ pageContext }) => {
+    const description = pageContext.table.map(entry => 
+            entry.position + " " + entry.team.shortName + "(" + entry.points + ")"
+    ).join('\n');
+
     return(
         <Layout>
-            <SEO title="Serie A Standings"></SEO>
+            <SEO title="Serie A Standings" description={description}></SEO>
             <div className="table-row header">
                 <div className="position"></div>
                 <div className="image"></div>
