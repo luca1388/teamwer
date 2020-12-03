@@ -168,11 +168,13 @@ exports.createPages = async ({ graphql, actions }) => {
               name
               shortName
               id
+              crestUrl
             }
             awayTeam {
               name
               shortName
               id
+              crestUrl
             }
           }
         }
@@ -204,15 +206,15 @@ exports.createPages = async ({ graphql, actions }) => {
         );
       }
     );
-    const searchedTeamName =
+    const searchedTeam =
       searchedTeamMatches[0].node.homeTeam.id === searchedTeamId
-        ? searchedTeamMatches[0].node.homeTeam.name
-        : searchedTeamMatches[0].node.awayTeam.name;
+        ? searchedTeamMatches[0].node.homeTeam
+        : searchedTeamMatches[0].node.awayTeam;
 
     searchedTeamMatches = searchedTeamMatches.map(match => ({
       ...match,
       teamId: searchedTeamId,
-      teamName: searchedTeamName,
+      teamName: searchedTeam.name,
     }));
 
     createPage({
@@ -222,8 +224,10 @@ exports.createPages = async ({ graphql, actions }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         teamId: searchedTeamId,
-        teamName: searchedTeamName,
+        teamName: searchedTeam.name,
         matches: searchedTeamMatches,
+        teamShortName: searchedTeam.shortName,
+        teamImage: searchedTeam.crestUrl
       },
     });
   });
