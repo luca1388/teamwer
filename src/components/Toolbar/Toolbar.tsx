@@ -14,7 +14,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ links }) => (
   <div className="toolbar">
     {links.map((link, index) => (
       <span key={link.to}>
-        <Link to={link.to}>{link.label}</Link>{" "}
+        <Link className="link" to={link.to}>{link.label}</Link>{" "}
         {index !== links.length - 1 && "|"}{" "}
       </span>
     ))}

@@ -5,7 +5,11 @@
     margin-bottom: 1.45rem;
 }
 
-.toolbar .link {
+.toolbar .link, .toolbar .link:active {
     text-decoration: none;
     color: black;
+}
+
+.toolbar .link:hover {
+    color: #d6d669
 }
