@@ -9,16 +9,14 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <header
     style={{
       background: `#2f2f2f`,
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center"
     }}
   >
     <div
       style={{
-        margin: `0 auto`,
-        width: "80%",
         padding: `1.45rem 1.0875rem`,
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center"
       }}
     >
       <h1 style={{ margin: 0 }}>
