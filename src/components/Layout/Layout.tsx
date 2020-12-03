@@ -34,7 +34,7 @@ const Layout: React.FC = ({ children }) => {
       <Toolbar
         links={[
           { to: "/", label: "Home" },
-          { to: "/table", label: "Table" },
+          { to: "/table", label: "Standings" },
         ]}
       />
       <div

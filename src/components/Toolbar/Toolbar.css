@@ -1,3 +1,11 @@
 .toolbar {
-    padding: 0 0 0 20px;
+    padding: 10px;
+    color: black;
+    background-color: #e6e6e6;
+    margin-bottom: 1.45rem;
+}
+
+.toolbar .link {
+    text-decoration: none;
+    color: black;
 }

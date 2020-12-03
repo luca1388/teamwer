@@ -9,7 +9,6 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <header
     style={{
       background: `#2f2f2f`,
-      marginBottom: `1.45rem`,
     }}
   >
     <div
