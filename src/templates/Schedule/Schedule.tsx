@@ -16,10 +16,12 @@ type ScheduleNode = {
     homeTeam: {
       name: string;
       shortName: string;
+      crestUrl: string;
     },
     awayTeam: {
       name: string;
       shortName: string;
+      crestUrl: string;
     }
   }
 };
@@ -29,15 +31,17 @@ interface ScheduleProps {
     teamId: number;
     teamName: string;
     matches: ScheduleNode[];
+    teamShortName: string;
+    teamImage: string;
   }
 };
 
 const Schedule: React.FC<ScheduleProps> = ({ pageContext }) => {
-  const { teamName, matches } = pageContext;
+  const { teamName, matches, teamImage, teamShortName } = pageContext;
 
   return (
     <Layout>
-      <SEO title={"Calendario " + teamName}></SEO>
+      <SEO title={"Calendario " + teamShortName} image={teamImage}></SEO>
       {matches.map(match => (
         <div className="schedule-container" key={match.node.id}>
           <div className="schedule-team">{match.node.homeTeam.shortName}</div>

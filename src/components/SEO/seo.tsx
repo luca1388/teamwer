@@ -18,10 +18,11 @@ interface SEOProps {
   meta?: [{
     name: string;
     content: string
-  }]
+  }];
+  image?: string;
 };
 
-const SEO: React.FC<SEOProps> = ({ description = "", lang = "en", meta = [], title }): ReactElement => {
+const SEO: React.FC<SEOProps> = ({ description = "", lang = "en", meta = [], title, image = '' }): ReactElement => {
   const { site }: SiteData = useStaticQuery(
     graphql`
       query {
@@ -79,6 +80,10 @@ const SEO: React.FC<SEOProps> = ({ description = "", lang = "en", meta = [], tit
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `og:image`,
+          content: image || site.siteMetadata.image,
         },
       ].concat(meta)}
     />
