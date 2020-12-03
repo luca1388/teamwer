@@ -2,7 +2,7 @@ import React from "react";
 import { PageProps, graphql } from "gatsby";
 
 import Layout from "../components/Layout/Layout";
-import SEO from "../components/SEO/SEO";
+import SEO from "../components/SEO/seo";
 import TeamTile from "../components/TeamTile/TeamTile";
 
 type IndexPageProps = {
