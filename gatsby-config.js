@@ -3,7 +3,7 @@ module.exports = {
     title: `Serie A Team viewer`,
     description: `Check out the results of your favourite Serie A Italian soccer team!`,
     author: `@luca1388`,
-    image: process.env.DOMAIN + '/gatsby-astronaut.png'
+    image: process.env.DOMAIN + 'gatsby-astronaut.png'
   },
   plugins: [
     {
